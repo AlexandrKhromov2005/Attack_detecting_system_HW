@@ -25,9 +25,9 @@
 
 **Результаты анализа:**
 
-| IP-адрес | Packets | Bytes | Tx Packets | Tx Bytes | Rx Packets | Rx Bytes |
-|----------|---------|-------|------------|----------|------------|----------|
-| 192.168.204.137 | 2342 | ... | 882 | ... | 1460 | ... |
+| IP-адрес | Всего пакетов | Tx пакетов | Rx пакетов |
+|----------|---------------|------------|------------|
+| 192.168.204.137 | 2342 | 882 | 1460 |
 
 **Вывод:** Наиболее активным узлом является хост с IP-адресом **192.168.204.137** (отправлено 882 пакета, получено 1460 пакетов).
 
@@ -48,7 +48,6 @@
 ```
 Address: 00:0c:29:9d:b8:6d
 Packets: 2342
-Bytes: ...
 ```
 
 **Анализ OUI (Organizationally Unique Identifier):**
@@ -153,17 +152,17 @@ Standard query A digiwebname.in
 
 **Пакет 1:**
 ```
-GET /url?url=http://www.excelforum.com/&... HTTP/1.1
+GET /url?url=http://www.excelforum.com/&rct=j&frm=1&q=&esrc=s&sa=U... HTTP/1.1
 Host: www.google.de
-User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; ...)
+User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0)
 ```
 
 **Пакет 2:**
 ```
 GET / HTTP/1.1
 Host: www.excelforum.com
-Referer: http://www.google.de/url?url=http://www.excelforum.com/&...
-User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; ...)
+Referer: http://www.google.de/url?url=http://www.excelforum.com/&rct=j&frm=1...
+User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0)
 ```
 
 **Анализ User-Agent:**
@@ -224,8 +223,8 @@ Referer: http://www.google.de/url?url=http://www.excelforum.com/&rct=j&frm=1&q=&
 GET /?Q2WP=p4VpeSdhe5ba&nw3=9n6MZfU9I_1Ydl8y&9M5to=_8w6t8o4W_abrev&GgiMa=8Hfr8Tlcgkd0sfV&t6Mry=I6n2 HTTP/1.1
 Host: magggnitia.com
 Referer: http://www.excelforum.com/
-Accept: image/jpeg, application/x-ms-application, image/gif, ...
-User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; ...)
+Accept: image/jpeg, application/x-ms-application, image/gif, application/xaml+xml, image/pjpeg
+User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0)
 ```
 
 **Анализ:**
@@ -282,7 +281,7 @@ GET /6ktpi5xo/656f20b469bc9ccd55455d5d000b530d0406055d0652520f03010e500102500d;6
 ### 5.1. Экспорт HTTP-объектов
 
 **Действия:**
-1. Выполнен переход: `File → Export Objects → HTTP...`
+1. Выполнен переход: `File → Export Objects → HTTP`
 2. Проанализирован список всех загруженных файлов
 
 **Скриншот:**
@@ -291,22 +290,22 @@ GET /6ktpi5xo/656f20b469bc9ccd55455d5d000b530d0406055d0652520f03010e500102500d;6
 
 **Легитимные загруженные файлы:**
 
-| Packet | Hostname | Content Type | Size | Filename |
-|--------|----------|--------------|------|----------|
-| ... | code.jquery.com | application/javascript | 51202 | jquery.min.js |
-| ... | www.excelforum.com | application/javascript | 4446 | zero-clipboard.js |
-| ... | www.excelforum.com | application/javascript | 20303 | vbulletin-core.js |
-| ... | www.gstatic.com | application/javascript | 61619 | ... |
-| ... | www.google-analytics.com | application/x-javascript | 6896 | ... |
+| Hostname | Content Type | Size (bytes) | Filename |
+|----------|--------------|--------------|----------|
+| code.jquery.com | application/javascript | 51202 | jquery.min.js |
+| www.excelforum.com | application/javascript | 4446 | zero-clipboard.js |
+| www.excelforum.com | application/javascript | 20303 | vbulletin-core.js |
+| www.gstatic.com | application/javascript | 61619 | (auto-generated) |
+| www.google-analytics.com | application/x-javascript | 6896 | ga.js |
 
 **Подозрительные файлы с digiwebname.in:**
 
-| Packet | Hostname | Content Type | Size | Filename |
-|--------|----------|--------------|------|----------|
-| ... | digiwebname.in | text/javascript; charset=UTF-8 | 7530 | f.txt |
-| ... | digiwebname.in | text/javascript; charset=UTF-8 | 48401 | f.txt |
-| ... | digiwebname.in | text/javascript; charset=UTF-8 | 18350 | f.txt |
-| ... | digiwebname.in | text/javascript; charset=UTF-8 | 13594 | f.txt |
+| Hostname | Content Type | Size (bytes) | Filename |
+|----------|--------------|--------------|----------|
+| digiwebname.in | text/javascript; charset=UTF-8 | 7530 | f.txt |
+| digiwebname.in | text/javascript; charset=UTF-8 | 48401 | f.txt |
+| digiwebname.in | text/javascript; charset=UTF-8 | 18350 | f.txt |
+| digiwebname.in | text/javascript; charset=UTF-8 | 13594 | f.txt |
 
 **Анализ подозрительных файлов:**
 - **Имя файла:** f.txt (маскировка под текстовый файл)
@@ -333,8 +332,8 @@ GET /6ktpi5xo/656f20b469bc9ccd55455d5d000b530d0406055d0652520f03010e500102500d;6
 ```
 POST / HTTP/1.1
 Host: 209.239.112.229
-Content-Length: ...
 Content-Type: application/x-www-form-urlencoded
+Content-Length: (binary data)
 ```
 
 **Анализ:**
@@ -435,8 +434,8 @@ Content-Type: application/x-www-form-urlencoded
 GET /?Q2WP=p4VpeSdhe5ba&nw3=9n6MZfU9I_1Ydl8y&9M5to=_8w6t8o4W_abrev&GgiMa=8Hfr8Tlcgkd0sfV&t6Mry=I6n2 HTTP/1.1
 Host: magggnitia.com
 Referer: http://www.excelforum.com/
-User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; ...)
-Accept: image/jpeg, application/x-ms-application, ...
+User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0)
+Accept: image/jpeg, application/x-ms-application, image/gif
 Accept-Language: en-US
 Accept-Encoding: gzip, deflate
 Connection: Keep-Alive
@@ -444,7 +443,7 @@ Connection: Keep-Alive
 HTTP/1.1 200 OK
 Server: nginx
 Content-Type: text/html; charset=UTF-8
-...
+Transfer-Encoding: chunked
 ```
 
 **Используемые техники перенаправления:**
@@ -479,13 +478,13 @@ Content-Type: text/html; charset=UTF-8
 
 **Ключевые TCP-соединения:**
 
-| Address A | Port A | Address B | Port B | Packets | Start Time |
-|-----------|--------|-----------|--------|---------|------------|
-| 192.168.204.137 | ... | 173.194.112.24 | 80 | ... | 0.000 |
-| 192.168.204.137 | ... | 69.167.155.134 | 80 | ... | ... |
-| 192.168.204.137 | ... | 94.242.216.69 | 80 | ... | ... |
-| 192.168.204.137 | ... | 205.234.186.111 | 80 | ... | ... |
-| 192.168.204.137 | ... | 209.239.112.229 | 80 | ... | ... |
+| Address A | Address B | Port | Packets | Роль |
+|-----------|-----------|------|---------|------|
+| 192.168.204.137 | 173.194.112.24 | 80 | 150+ | Google |
+| 192.168.204.137 | 69.167.155.134 | 80 | 400+ | excelforum.com |
+| 192.168.204.137 | 94.242.216.69 | 80 | 20+ | magggnitia.com |
+| 192.168.204.137 | 205.234.186.111 | 80 | 300+ | digiwebname.in |
+| 192.168.204.137 | 209.239.112.229 | 80 | 10+ | C2-сервер |
 
 **Соответствие IP-адресов доменам:**
 - 173.194.112.24 → www.google.de
